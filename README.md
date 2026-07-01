@@ -2,5 +2,10 @@
 
 ## My information
 - Patchya Wongpa
-- 0568604050xx-x
-- อยากเข้าใจเกี่ยวกับเนื้อหาขอวิชา ระบบป้องกันที่เสถียรใช้งานได้ดี และ สามารถนำไปปฎิบัติได้
+- STUNDET ID 0568604050xx-x
+
+##Expectations regarding this subject
+
+- I would like to understand the content of the course on stable, effective, and practical protection systems.
+- I have knowledge of operating systems (OS).
+- Possesses the skills to work as a cybersecurity professional.
