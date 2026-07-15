@@ -5,9 +5,9 @@ services:
     ports:
       
   -54327:5432
-envicomments:
-  -postgres_password=12345678
-  -postgres_user=patchya
-  -postgres_DB=patchya
+environment:
+  -POSTGRES_PASSWORD=12345678
+  -POSTGRES_USER=patchya
+  -POSTGRES_DB=patchya
 volume:  
   -./data:/var/lib/postgresql/data
