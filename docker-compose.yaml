@@ -1,0 +1,13 @@
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: 69-s1-db
+    ports:
+      
+  -54327:5432
+envicomments:
+  -postgres_password=12345678
+  -postgres_user=patchya
+  -postgres_DB=patchya
+volume:  
+  - ./data:/var/lib/postgresql/data
