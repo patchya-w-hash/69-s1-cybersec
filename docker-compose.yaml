@@ -9,4 +9,4 @@ services:
     -POSTGRES_USER=patchya
     -POSTGRES_DB=patchya
   volume:  
-    - ./data:/var/lib/postgresql/data
+    - C:\Users\NITRO.V16\69-s1-cybersec\data:/var/lib/postgresql/data
