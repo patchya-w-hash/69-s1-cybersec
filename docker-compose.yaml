@@ -4,9 +4,9 @@ services:
     container_name: 69-s1-db
     ports:
       - "54327:5432"
-  environment:
-    - POSTGRES_PASSWORD=12345678
-    - POSTGRES_USER=patchya
-    - POSTGRES_DB=patchya
-  volume:  
-    - ./data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD="12345678"
+      - POSTGRES_USER=patchya
+      - POSTGRES_DB=patchya
+    volumes:
+      - ./data:/var/lib/postgresql/data
