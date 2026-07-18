@@ -5,19 +5,19 @@ services:
     ports:
       - "54326:5432"
     environment:
-      - POSTGRES_PASSWORD="12345678"
+      - POSTGRES_PASSWORD=12345678
       - POSTGRES_USER=patchya
       - POSTGRES_DB=patchya
     volumes:
       - ./data:/var/lib/postgresql/data
 
-      admin:
+  admin:
     image: dpage/pgadmin4
     container_name: 69-s1-admin
     environment:
-      - PGADMIN_DEFAULT_EMAIL=patchya@rmutp.ac.th # อีเมลสำหรับล็อกอินหน้าเว็บ 
-      - PGADMIN_DEFAULT_PASSWORD=12345678   # รหัสผ่านสำหรับล็อกอินหน้าเว็บ 
+      - PGADMIN_DEFAULT_EMAIL=patchya@rmutp.ac.th
+      - PGADMIN_DEFAULT_PASSWORD=12345678
     ports:
-      - "8081:80"                                 # เปิดใช้งานผ่าน 
+      - "8081:80"
     depends_on:
-      - db                                        # สั่งให้รันตัว db ให้เสร็จก่อนรัน admin
+      - db
