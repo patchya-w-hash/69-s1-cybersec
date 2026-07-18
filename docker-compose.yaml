@@ -3,7 +3,7 @@ services:
     image: postgres:16-alpine
     container_name: 69-s1-db
     ports:
-      - "54327:5432"
+      - "54326:5432"
     environment:
       - POSTGRES_PASSWORD="12345678"
       - POSTGRES_USER=patchya
