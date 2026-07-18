@@ -15,9 +15,9 @@ services:
     image: dpage/pgadmin4
     container_name: 69-s1-admin
     environment:
-      - PGADMIN_DEFAULT_EMAIL=patchya-w@rmutp.com  # อีเมลสำหรับล็อกอินหน้าเว็บ (เปลี่ยนได้ตามใจชอบ)
-      - PGADMIN_DEFAULT_PASSWORD=12345678   # รหัสผ่านสำหรับล็อกอินหน้าเว็บ (เปลี่ยนได้ตามใจชอบ)
+      - PGADMIN_DEFAULT_EMAIL=patchya@rmutp.com  # อีเมลสำหรับล็อกอินหน้าเว็บ 
+      - PGADMIN_DEFAULT_PASSWORD=12345678   # รหัสผ่านสำหรับล็อกอินหน้าเว็บ 
     ports:
-      - "8081:80"                                 # เปิดใช้งานผ่าน http://localhost:8080
+      - "8081:80"                                 # เปิดใช้งานผ่าน 
     depends_on:
       - db                                        # สั่งให้รันตัว db ให้เสร็จก่อนรัน admin
