@@ -10,3 +10,14 @@ services:
       - POSTGRES_DB=patchya
     volumes:
       - ./data:/var/lib/postgresql/data
+
+      admin:
+    image: dpage/pgadmin4
+    container_name: 69-s1-admin
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=patchya-w@rmutp.com  # อีเมลสำหรับล็อกอินหน้าเว็บ (เปลี่ยนได้ตามใจชอบ)
+      - PGADMIN_DEFAULT_PASSWORD=12345678   # รหัสผ่านสำหรับล็อกอินหน้าเว็บ (เปลี่ยนได้ตามใจชอบ)
+    ports:
+      - "8080:80"                                 # เปิดใช้งานผ่าน http://localhost:8080
+    depends_on:
+      - db                                        # สั่งให้รันตัว db ให้เสร็จก่อนรัน admin
