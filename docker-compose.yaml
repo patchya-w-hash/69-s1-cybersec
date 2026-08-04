@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  69-s2-db:
+    image: postgres:14-alpine
+    container_name: 69-s2-db
+    environment:
+      POSTGRES_DB: strapi
+      POSTGRES_USER: strapi
+      POSTGRES_PASSWORD: password
+    restart: always
+
+  69-s2-admin:
+    image: adminer
+    container_name: 69-s2-admin
+    ports:
+      - "8080:8080"
+    restart: always
+
+  69-s2-app:
+    image: prawee/strapi
+    container_name: 69-s2-app
+    ports:
+      - "9092:1337"
+    environment:
+      DATABASE_CLIENT: postgres
+      DATABASE_HOST: 69-s2-db
+      DATABASE_PORT: 5432
+      DATABASE_NAME: strapi
+      DATABASE_USERNAME: strapi
+      DATABASE_PASSWORD: password
+    restart: always
