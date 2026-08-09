@@ -6,8 +6,8 @@ services:
     container_name: 69-s2-db
     environment:
       POSTGRES_DB: strapi
-      POSTGRES_USER: strapi
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: patchya
+      POSTGRES_PASSWORD: xiy=Pk
     restart: always
 
   69-s2-admin:
@@ -27,6 +27,6 @@ services:
       DATABASE_HOST: 69-s2-db
       DATABASE_PORT: 5432
       DATABASE_NAME: strapi
-      DATABASE_USERNAME: strapi
-      DATABASE_PASSWORD: password
+      DATABASE_USERNAME: patchya
+      DATABASE_PASSWORD: xiy=Pk
     restart: always
