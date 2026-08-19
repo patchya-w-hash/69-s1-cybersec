@@ -5,9 +5,9 @@ services:
     image: postgres:14-alpine
     container_name: 69-s2-db
     environment:
-      POSTGRES_DB: strapi
-      POSTGRES_USER: patchya
-      POSTGRES_PASSWORD: xiy=Pk
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     restart: always
 
   69-s2-admin:
@@ -26,7 +26,7 @@ services:
       DATABASE_CLIENT: postgres
       DATABASE_HOST: 69-s2-db
       DATABASE_PORT: 5432
-      DATABASE_NAME: strapi
-      DATABASE_USERNAME: patchya
-      DATABASE_PASSWORD: xiy=Pk
+      DATABASE_NAME: ${POSTGRES_DB}
+      DATABASE_USERNAME: ${POSTGRES_USER}
+      DATABASE_PASSWORD: ${POSTGRES_PASSWORD}
     restart: always
