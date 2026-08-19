@@ -3,21 +3,29 @@ services:
     image: postgres:16-alpine
     container_name: 69-s1-db
     ports:
-      - "54326:5432"
-    environment:
-      - POSTGRES_PASSWORD=12345678
-      - POSTGRES_USER=patchya
-      - POSTGRES_DB=patchya
-    volumes:
-      - ./data:/var/lib/postgresql/data
+      
+"54327:5432"
+  environment:
+POSTGRES_PASSWORD=xiy=Pk
+POSTGRES_USER=patchya
+POSTGRES_DB=patchya
+volumes:
+./data-postgres:/var/lib/postgresql/data
 
   admin:
     image: dpage/pgadmin4
     container_name: 69-s1-admin
     environment:
-      - PGADMIN_DEFAULT_EMAIL=patchya@rmutp.ac.th
-      - PGADMIN_DEFAULT_PASSWORD=12345678
-    ports:
-      - "8081:80"
-    depends_on:
-      - db
+      
+PGADMIN_DEFAULT_EMAIL=theerachut@test.com 
+PGADMIN_DEFAULT_PASSWORD=pass2468
+ports:
+"8081:80"
+depends_on:
+db
+volumes:
+data-admin:/var/lib/pgadmin
+
+volumes:
+  data-admin:
+
