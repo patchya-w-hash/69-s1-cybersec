@@ -1,0 +1,35 @@
+##api
+
+
+###Signup
+GET http://localhost:9092/admin/auth/register-admin
+content-type: application/json
+
+{
+  "firstName": "",
+  "lastName": "",
+  "email": "",
+  "password": "",
+  "confirmPassword": ""
+}
+###login
+POST http://localhost:9092/admin/login
+content-type: application/json
+
+{
+  "email": "",
+  "password": "",
+  "rememberMe": ""
+}
+##profile
+GET http://localhost:9092/admin/me
+Authorization: 
+
+###forgot
+POST http://localhost:9092/admin/forgot-password
+content-type: application/json
+
+{
+  "email": ""
+}
+###
