@@ -1,5 +1,21 @@
+# Environment variables and secrets
 .env
+.env.*
+.env.local
+.env.*.local
+*.env
+
+# Local API test files with credentials
 api.http
+
+# Database and persistent storage
 data/
 data-postgres/
 pgadmin/
+
+# Logs and runtime artifacts
+*.log
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
