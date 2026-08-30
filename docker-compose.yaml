@@ -44,5 +44,7 @@ services:
       - APP_KEYS=${APP_KEYS}
       - API_TOKEN_SALT=${APP_API_TOKEN_SALT}
       - TRANSFER_TOKEN_SALT=${APP_TRANSFER_TOKEN_SALT}
+    volumes:
+      - ./config:/opt/app/config
     depends_on:
       - db
