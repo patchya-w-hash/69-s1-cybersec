@@ -1,32 +1,75 @@
-##api
+# ADMIN API
 
-
-###Signup
-GET http://localhost:9092/admin/auth/register-admin
+## Admin Signup
+POST http://localhost:9092/admin/register-admin
 content-type: application/json
 
 {
-  "firstName": "",
-  "lastName": "",
+  "firstname": "",
+  "lastname": "",
   "email": "",
-  "password": "",
-  "confirmPassword": ""
+  "password": ""
 }
-###login
+###
+
+## Admin Login
+# @name adminLogin
 POST http://localhost:9092/admin/login
 content-type: application/json
 
 {
   "email": "",
   "password": "",
-  "rememberMe": ""
+  "rememberMe": false
 }
-##profile
-GET http://localhost:9092/admin/me
-Authorization: 
+###
 
-###forgot
+## Admin Profile
+GET http://localhost:9092/admin/users/me
+Authorization: Bearer {{adminLogin.response.body.data.token}}
+###
+
+## Admin Forgot Password
 POST http://localhost:9092/admin/forgot-password
+content-type: application/json
+
+{
+  "email": ""
+}
+###
+
+
+# USER API
+
+## User Signup
+POST http://localhost:9092/api/auth/local/register
+content-type: application/json
+
+{
+  "username": "",
+  "email": "",
+  "password": ""
+}
+###
+
+## User Login
+# @name userLogin
+POST http://localhost:9092/api/auth/local
+content-type: application/json
+
+{
+  "identifier": "",
+  "password": ""
+}
+###
+
+## User Profile
+GET http://localhost:9092/api/users/me
+Authorization: Bearer {{userLogin.response.body.jwt}}
+###
+
+## User Forgot Password
+POST http://localhost:9092/api/auth/forgot-password
 content-type: application/json
 
 {
