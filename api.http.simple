@@ -76,3 +76,14 @@ content-type: application/json
   "email": ""
 }
 ###
+
+## User Reset Password
+POST http://localhost:9092/api/auth/reset-password
+content-type: application/json
+
+{
+  "code": "",
+  "password": "",
+  "passwordConfirmation": ""
+}
+###
