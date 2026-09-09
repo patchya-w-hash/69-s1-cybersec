@@ -1,12 +1,17 @@
 # Environment variables and secrets
 .env
 .env.*
+!.env.example
 .env.local
 .env.*.local
 *.env
 
 # Local API test files with credentials
 api.http
+test_auth_suite.py
+test_*.py
+*.pyc
+__pycache__/
 
 # Database and persistent storage
 data/
