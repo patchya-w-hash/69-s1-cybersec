@@ -134,6 +134,7 @@ content-type: application/json
 
 ## 3.1 Student
 ### 3.1.1 Create
+# Prototype: {"data": {"name": string, "mobile": string(10), "cardId": string(13)}}
 # @name createStudent
 POST http://localhost:9092/api/students
 Authorization: Bearer {{userLogin.response.body.jwt}}
@@ -161,6 +162,7 @@ Authorization: Bearer {{userLogin.response.body.jwt}}
 ###
 
 ### 3.1.4 Update
+# Prototype: {"data": {"name"?: string, "mobile"?: string(10), "cardId"?: string(13)}}
 # @name updateStudent
 PUT http://localhost:9092/api/students/{{createStudent.response.body.data.id}}
 Authorization: Bearer {{userLogin.response.body.jwt}}
@@ -184,6 +186,7 @@ Authorization: Bearer {{userLogin.response.body.jwt}}
 
 ## 3.2 Subject
 ### 3.2.1 Create
+# Prototype: {"data": {"name": string (unique)}}
 # @name createSubject
 POST http://localhost:9092/api/subjects
 Authorization: Bearer {{userLogin.response.body.jwt}}
@@ -209,6 +212,7 @@ Authorization: Bearer {{userLogin.response.body.jwt}}
 ###
 
 ### 3.2.4 Update
+# Prototype: {"data": {"name"?: string (unique)}}
 # @name updateSubject
 PUT http://localhost:9092/api/subjects/{{createSubject.response.body.data.id}}
 Authorization: Bearer {{userLogin.response.body.jwt}}
@@ -230,6 +234,7 @@ Authorization: Bearer {{userLogin.response.body.jwt}}
 
 ## 3.3 Teacher
 ### 3.3.1 Create
+# Prototype: {"data": {"name": string}}
 # @name createTeacher
 POST http://localhost:9092/api/teachers
 Authorization: Bearer {{userLogin.response.body.jwt}}
@@ -255,6 +260,7 @@ Authorization: Bearer {{userLogin.response.body.jwt}}
 ###
 
 ### 3.3.4 Update
+# Prototype: {"data": {"name"?: string}}
 # @name updateTeacher
 PUT http://localhost:9092/api/teachers/{{createTeacher.response.body.data.id}}
 Authorization: Bearer {{userLogin.response.body.jwt}}
