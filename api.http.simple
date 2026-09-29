@@ -1,6 +1,7 @@
 # ADMIN API
 
 ## Admin Signup
+# @name adminRegister
 POST http://localhost:9092/admin/register-admin
 content-type: application/json
 
@@ -12,7 +13,7 @@ content-type: application/json
 }
 ###
 
-## Admin Login
+## 1.1 Login with current password
 # @name adminLogin
 POST http://localhost:9092/admin/login
 content-type: application/json
@@ -24,12 +25,13 @@ content-type: application/json
 }
 ###
 
-## Admin Profile
+## 1.2 Profile
 GET http://localhost:9092/admin/users/me
 Authorization: Bearer {{adminLogin.response.body.data.token}}
 ###
 
-## Admin Forgot Password
+## 1.3 Forgot password
+# @name adminForgotPassword
 POST http://localhost:9092/admin/forgot-password
 content-type: application/json
 
@@ -38,10 +40,34 @@ content-type: application/json
 }
 ###
 
+## 1.3.1 Reset password
+# @name adminResetPassword
+POST http://localhost:9092/admin/reset-password
+content-type: application/json
+
+{
+  "resetPasswordToken": "",
+  "password": ""
+}
+###
+
+## 1.1 Login with new password
+# @name adminLoginNewPassword
+POST http://localhost:9092/admin/login
+content-type: application/json
+
+{
+  "email": "",
+  "password": "",
+  "rememberMe": false
+}
+###
+
 
 # USER API
 
 ## User Signup
+# @name userRegister
 POST http://localhost:9092/api/auth/local/register
 content-type: application/json
 
@@ -68,7 +94,21 @@ GET http://localhost:9092/api/users/me
 Authorization: Bearer {{userLogin.response.body.jwt}}
 ###
 
+## User Change Password
+# @name userChangePassword
+POST http://localhost:9092/api/auth/change-password
+Authorization: Bearer {{userLogin.response.body.jwt}}
+content-type: application/json
+
+{
+  "currentPassword": "",
+  "password": "",
+  "passwordConfirmation": ""
+}
+###
+
 ## User Forgot Password
+# @name userForgotPassword
 POST http://localhost:9092/api/auth/forgot-password
 content-type: application/json
 
@@ -78,6 +118,7 @@ content-type: application/json
 ###
 
 ## User Reset Password
+# @name userResetPassword
 POST http://localhost:9092/api/auth/reset-password
 content-type: application/json
 
@@ -86,4 +127,148 @@ content-type: application/json
   "password": "",
   "passwordConfirmation": ""
 }
+###
+
+
+# 3. Content section
+
+## 3.1 Student
+### 3.1.1 Create
+# @name createStudent
+POST http://localhost:9092/api/students
+Authorization: Bearer {{userLogin.response.body.jwt}}
+content-type: application/json
+
+{
+  "data": {
+    "name": "Patchya Wongpa",
+    "mobile": "0613632549",
+    "cardId": "0568604050423"
+  }
+}
+###
+
+### 3.1.2 List All
+# @name listAllStudents
+GET http://localhost:9092/api/students
+Authorization: Bearer {{userLogin.response.body.jwt}}
+###
+
+### 3.1.3 List with ID
+# @name listStudentById
+GET http://localhost:9092/api/students/{{createStudent.response.body.data.id}}
+Authorization: Bearer {{userLogin.response.body.jwt}}
+###
+
+### 3.1.4 Update
+# @name updateStudent
+PUT http://localhost:9092/api/students/{{createStudent.response.body.data.id}}
+Authorization: Bearer {{userLogin.response.body.jwt}}
+content-type: application/json
+
+{
+  "data": {
+    "name": "Patchya Wongpa (Updated)",
+    "mobile": "0613632549",
+    "cardId": "0568604050423"
+  }
+}
+###
+
+### 3.1.5 Delete
+# @name deleteStudent
+DELETE http://localhost:9092/api/students/{{createStudent.response.body.data.id}}
+Authorization: Bearer {{userLogin.response.body.jwt}}
+###
+
+
+## 3.2 Subject
+### 3.2.1 Create
+# @name createSubject
+POST http://localhost:9092/api/subjects
+Authorization: Bearer {{userLogin.response.body.jwt}}
+content-type: application/json
+
+{
+  "data": {
+    "name": "Cyber Security"
+  }
+}
+###
+
+### 3.2.2 List All
+# @name listAllSubjects
+GET http://localhost:9092/api/subjects
+Authorization: Bearer {{userLogin.response.body.jwt}}
+###
+
+### 3.2.3 List with ID
+# @name listSubjectById
+GET http://localhost:9092/api/subjects/{{createSubject.response.body.data.id}}
+Authorization: Bearer {{userLogin.response.body.jwt}}
+###
+
+### 3.2.4 Update
+# @name updateSubject
+PUT http://localhost:9092/api/subjects/{{createSubject.response.body.data.id}}
+Authorization: Bearer {{userLogin.response.body.jwt}}
+content-type: application/json
+
+{
+  "data": {
+    "name": "Cyber Security (Updated)"
+  }
+}
+###
+
+### 3.2.5 Delete
+# @name deleteSubject
+DELETE http://localhost:9092/api/subjects/{{createSubject.response.body.data.id}}
+Authorization: Bearer {{userLogin.response.body.jwt}}
+###
+
+
+## 3.3 Teacher
+### 3.3.1 Create
+# @name createTeacher
+POST http://localhost:9092/api/teachers
+Authorization: Bearer {{userLogin.response.body.jwt}}
+content-type: application/json
+
+{
+  "data": {
+    "name": "Prawee Wongsa"
+  }
+}
+###
+
+### 3.3.2 List All
+# @name listAllTeachers
+GET http://localhost:9092/api/teachers
+Authorization: Bearer {{userLogin.response.body.jwt}}
+###
+
+### 3.3.3 List with ID
+# @name listTeacherById
+GET http://localhost:9092/api/teachers/{{createTeacher.response.body.data.id}}
+Authorization: Bearer {{userLogin.response.body.jwt}}
+###
+
+### 3.3.4 Update
+# @name updateTeacher
+PUT http://localhost:9092/api/teachers/{{createTeacher.response.body.data.id}}
+Authorization: Bearer {{userLogin.response.body.jwt}}
+content-type: application/json
+
+{
+  "data": {
+    "name": "Prawee Wongsa (Updated)"
+  }
+}
+###
+
+### 3.3.5 Delete
+# @name deleteTeacher
+DELETE http://localhost:9092/api/teachers/{{createTeacher.response.body.data.id}}
+Authorization: Bearer {{userLogin.response.body.jwt}}
 ###

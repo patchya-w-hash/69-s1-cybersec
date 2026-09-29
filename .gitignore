@@ -8,9 +8,12 @@
 
 # Local API test files with credentials
 api.http
+forgot.json
+*.tmp.json
 test_auth_suite.py
 test_*.py
 *.pyc
+rgb.py
 __pycache__/
 
 # Database and persistent storage

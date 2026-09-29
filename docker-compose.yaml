@@ -3,34 +3,51 @@ version: '3.8'
 services:
   db:
     image: postgres:16-alpine
-    container_name: 69-s2-db
+    container_name: 69-s1-db
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"
     environment:
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASS}
       - POSTGRES_DB=${DB_NAME}
     volumes:
       - ./data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
 
   admin:
     image: dpage/pgadmin4
-    container_name: 69-s2-admin
+    container_name: 69-s1-admin
     ports:
-      - "8081:80"
+      - "127.0.0.1:8081:80"
     environment:
       - PGADMIN_DEFAULT_EMAIL=${PG_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PG_PASS}
     volumes:
       - ./pgadmin:/var/lib/pgadmin
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   app:
     image: prawee/strapi
-    container_name: 69-s2-app
+    container_name: 69-s1-app
     ports:
-      - "9092:1337"
+      - "127.0.0.1:9092:1337"
     environment:
       - DATABASE_CLIENT=postgres
       - DATABASE_HOST=db
@@ -44,7 +61,20 @@ services:
       - APP_KEYS=${APP_KEYS}
       - API_TOKEN_SALT=${APP_API_TOKEN_SALT}
       - TRANSFER_TOKEN_SALT=${APP_TRANSFER_TOKEN_SALT}
+      - SMTP_PASSWORD=${EMAIL_SMTP_PASS}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PORT=${SMTP_PORT:-587}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - EMAIL_DEFAULT_FROM=${EMAIL_DEFAULT_FROM}
+      - EMAIL_DEFAULT_REPLY_TO=${EMAIL_DEFAULT_REPLY_TO}
+      - PUBLIC_URL=${PUBLIC_URL:-http://localhost:9092}
     volumes:
-      - ./config:/opt/app/config
+      - ./config:/opt/app/config:ro
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
     depends_on:
-      - db
+      db:
+        condition: service_healthy
